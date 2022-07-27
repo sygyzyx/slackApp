@@ -1,0 +1,30 @@
+  //npm install axios
+  
+  const axios = require("axios");
+  const tokenStr =
+  "eyJraWQiOiJqSXRKQ0F3SFdYc1l0SFwvSGpVTGhkSmtzWnpjVVpIXC95cHg5TU5mV2F3YjA9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI5Y2IwYTYxYy1hMjJhLTRmMjktYWM0Ni04NjU1Y2ExOTEyZmYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuZXUtd2VzdC0xLmFtYXpvbmF3cy5jb21cL2V1LXdlc3QtMV9uRzBvTlJ2dk8iLCJ2ZXJzaW9uIjoyLCJjbGllbnRfaWQiOiI0aDQzMXYxaXBrNWxkazkzM2pycWt1aGhmMiIsIm9yaWdpbl9qdGkiOiIzZjBkMzIxNy1jYjg4LTQwMWUtYWY2MS04MTE2MzkwNjUwNzciLCJldmVudF9pZCI6ImI1MzFlMDM2LWE3NGEtNGI5NS05MDkzLTBiMmYxZTg1NjVjMyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4gb3BlbmlkIHByb2ZpbGUgZW1haWwiLCJhdXRoX3RpbWUiOjE2NTg3MjcyNjUsImV4cCI6MTY1ODgxMzY2NSwiaWF0IjoxNjU4NzI3MjY1LCJqdGkiOiJhMWY3M2NlYy04YzE5LTRhOGMtOGZhYy0wNDY2M2JmMTdkZTgiLCJ1c2VybmFtZSI6IjljYjBhNjFjLWEyMmEtNGYyOS1hYzQ2LTg2NTVjYTE5MTJmZiJ9.Bt6IwKUKzJk_t7wux0Af3NAJbUrnaKFB60-zP3mooOsm7LooV39jlFUqqvld5gqtVIKgsJZTndU2AJHsoisbohQ-CBqJGQFv7lo3JUsMfK2Xl7aD6OmDW3Of_a0ZsZh6h3CVqpvzM_LhJ53YvrkFX4kue9wfKed1PdO7Lo6A0wCu9evs7oiY0AQz194Y4bFq0wmWj_-f0CVNKdKTnc8ewhgiTFeRZQVNWvIqxx9lsqgbrg4qsBsA9uEfipb35D3XYeS3kPjDJDNAPJLIYh-2TvqA3IrzYW-jwvMBsi_Vz8OJcdWQH_n-1dpho9bXdZ8unsXN8thuHKWniUzjbzSSEQ";
+  let userName = [];
+   await axios
+    .get("https://qa-admin.eachperson.com/api/ecards/users", {
+      headers: { Authorization: tokenStr },
+    })
+    .then((res) => {
+      let userData = res.data;
+      console.log(userData)
+      userData.map((element) => {
+        let eachObj = {
+						"text": {
+							"type": "plain_text",
+							"text": element.name || element.email,
+							"emoji": true
+						},
+            value: element.uuid
+          };
+						
+        userName.push(eachObj);
+      });
+    })
+    .catch((error) => console.log(error));
+
+  
+  console.log(userName);
