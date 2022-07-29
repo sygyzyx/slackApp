@@ -27,7 +27,7 @@ app.shortcut('form_call', async ({ shortcut, ack, client, logger }) => {
             callback_id: 'formSubmit',
             "title": {
                 "type": "plain_text",
-                "text": "My App",
+                "text": "Each Person",
                 "emoji": true
             },
             "submit": {
